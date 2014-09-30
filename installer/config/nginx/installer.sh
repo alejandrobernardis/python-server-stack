@@ -6,7 +6,7 @@
 # Email: alejandro.bernardis at gmail.com
 # Created: 07/03/14 21:04:34
 
-# -- View: 
+# -- Read: 
 # http://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html
 
 _title "NGINX"
