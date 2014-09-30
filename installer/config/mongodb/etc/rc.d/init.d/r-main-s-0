@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# r-main-s-0 - Startup script for mongod
+
+# chkconfig: 35 85 15
+# description: Mongo is a scalable, document-oriented database.
+# processname: r-main-s-0
+# config: /etc/mongod/r_main_s_0_27000.yaml
+# pidfile: /var/run/mongod/r_main_s_0.pid
+
+. /etc/rc.d/init.d/functions
+
+NAME="r_main_s_0_27000"
+CONFIGFILE="/data/etc/mongod/$NAME.yaml"
+OPTIONS=" --config $CONFIGFILE"
+SYSCONFIG="/etc/sysconfig/mongod"
+LOCKFILEPATH="/var/lock/subsys/mongod-$NAME"
+DBPATH=`awk -F'[:=]' -v IGNORECASE=1 '/^[[:blank:]]*dbpath[[:blank:]]*[:=][[:blank:]]*/{print $2}' "$CONFIGFILE" | tr -d '[:blank:]'`
+PIDFILEPATH=`awk -F'[:=]' -v IGNORECASE=1 '/^[[:blank:]]*pidfilepath[[:blank:]]*[:=][[:blank:]]*/{print $2}' "$CONFIGFILE" | tr -d '[:blank:]'`
+mongod=${MONGOD-/usr/bin/mongod}
+MONGO_USER=mongod
+MONGO_GROUP=mongod
+
+if [ -f "$SYSCONFIG" ]; then
+    . "$SYSCONFIG"
+fi
+
+NUMACTL_ARGS="--interleave=all"
+
+if which numactl >/dev/null 2>/dev/null && numactl $NUMACTL_ARGS ls / >/dev/null 2>/dev/null
+then
+    NUMACTL="numactl $NUMACTL_ARGS"
+else
+    NUMACTL=""
+fi
+
+start() {
+    ulimit -f unlimited
+    ulimit -t unlimited
+    ulimit -v unlimited
+    ulimit -n 64000
+    ulimit -m unlimited
+    ulimit -u 32000
+    echo -n $"Starting mongod ($NAME):"
+    daemon --user "$MONGO_USER" "$NUMACTL $mongod $OPTIONS >/dev/null 2>&1"
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $LOCKFILEPATH
+}
+
+stop() {
+    echo -n $"Stopping mongod ($NAME): "
+    killproc -p "$PIDFILEPATH" -d 300 $mongod
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $LOCKFILEPATH
+}
+
+restart () {
+	stop
+	start
+}
+
+
+RETVAL=0
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload|force-reload)
+    restart
+    ;;
+  condrestart)
+    [ -f $LOCKFILEPATH ] && restart || :
+    ;;
+  status)
+    status $mongod
+    RETVAL=$?
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart|reload|force-reload|condrestart}"
+    RETVAL=1
+esac
+
+exit $RETVAL

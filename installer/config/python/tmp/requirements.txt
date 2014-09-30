@@ -1,0 +1,11 @@
+supervisor
+django
+https://pypi.python.org/packages/source/b/backports.ssl_match_hostname/backports.ssl_match_hostname-3.4.0.2.tar.gz
+tornado
+pymongo
+pylibmc
+celery
+greenlet
+dateutils
+fabric
+werkzeug

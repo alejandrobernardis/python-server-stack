@@ -1,0 +1,26 @@
+storage:
+    dbPath: "/data/db/r/track/s/0"
+    journal:
+        enabled: true
+    smallFiles: true
+
+net:
+    port: 27100
+    bindIp: "127.0.0.1"
+
+processManagement:
+    pidFilePath: "/data/var/run/mongod/r_track_s_0.pid"
+    fork: true
+
+systemLog:
+    destination: file
+    path: "/data/var/log/mongod/r_track_s_0.log"
+    quiet: true
+    logAppend: true
+
+security:
+    authorization: disabled
+    keyFile: "/data/etc/mongod/keys/r_track_s_all"
+
+# replication:
+#     replSetName: rs_main
