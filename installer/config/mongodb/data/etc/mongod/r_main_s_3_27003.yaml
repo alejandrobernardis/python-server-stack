@@ -1,0 +1,26 @@
+storage:
+    dbPath: "/data/db/r/main/s/3"
+    journal:
+        enabled: true
+    smallFiles: true
+
+net:
+    port: 27003
+    bindIp: "127.0.0.1"
+
+processManagement:
+    pidFilePath: "/data/var/run/mongod/r_main_s_3.pid"
+    fork: true
+
+systemLog:
+    destination: file
+    path: "/data/var/log/mongod/r_main_s_3.log"
+    quiet: true
+    logAppend: true
+
+security:
+    authorization: disabled
+    keyFile: "/data/etc/mongod/keys/r_main_s_all"
+
+replication:
+    replSetName: rs_main
