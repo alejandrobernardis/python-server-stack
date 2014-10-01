@@ -9,7 +9,7 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ, Nginx and Python.
 2. Modify file privileges: `$: chmod +x install.sh`
 3. Run: `$: ./install.sh`
 
-### Structure:
+### Installer Structure:
 
     installer/
     ├── application.sh
@@ -101,7 +101,7 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ, Nginx and Python.
     │       └── installer.sh
     └── install.sh
 
-#### Project Path
+### Project Structure:
 
     ─── /data
         ├── /bin
