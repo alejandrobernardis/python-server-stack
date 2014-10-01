@@ -7,7 +7,7 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ, Nginx and Python.
 
 1. Set your own configuration and then copy the `installer` folder into your server.
 2. Modify file privileges: `$: chmod +x install.sh`
-3. Run: `$: ./installer.sh`
+3. Run: `$: ./install.sh`
 
 ### Structure:
 
