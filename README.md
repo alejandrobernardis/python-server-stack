@@ -1,12 +1,12 @@
 python-server-stack
 ===================
 
-Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
+Environment build with CentOS, Memcached, MongoDB, RabbitMQ, Nginx and Python.
 
 ### First Steps:
 
 1. Set your own configuration and then copy the `installer` folder into your server.
-2. Modify file privileges: `$: chmod +x installer.sh`
+2. Modify file privileges: `$: chmod +x install.sh`
 3. Run: `$: ./installer.sh`
 
 ### Structure:
@@ -25,7 +25,7 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
     │   │   │   │   └── limits.conf
     │   │   │   ├── sudoers
     │   │   │   └── sysctl.conf
-    │   │   ├── installer.sh  *
+    │   │   ├── installer.sh
     │   │   └── root
     │   │       └── dot_bash_profile
     │   ├── memcached
@@ -38,8 +38,8 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
     │   │   │   └── etc
     │   │   │       └── mongod
     │   │   │           ├── keys
-    │   │   │           │   ├── r_main_s_all *
-    │   │   │           │   └── r_track_s_all *
+    │   │   │           │   ├── r_main_s_all
+    │   │   │           │   └── r_track_s_all
     │   │   │           ├── r_main_s_0_27000.yaml
     │   │   │           ├── r_main_s_1_27001.yaml
     │   │   │           ├── r_main_s_2_27002.yaml
@@ -57,8 +57,8 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
     │   │   │       └── 10gen.repo
     │   │   ├── installer.sh
     │   │   └── tmp
-    │   │       ├── r_main_s_all.mjs *
-    │   │       └── r_track_s_all.mjs  *
+    │   │       ├── r_main_s_all.mjs
+    │   │       └── r_track_s_all.mjs 
     │   ├── nginx
     │   │   ├── data
     │   │   │   ├── etc
@@ -66,33 +66,33 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
     │   │   │   │       ├── common.conf
     │   │   │   │       ├── errors.conf
     │   │   │   │       └── sites-available
-    │   │   │   │           ├── backend.vhost *
-    │   │   │   │           ├── backoffice.vhost *
-    │   │   │   │           └── public.vhost *
+    │   │   │   │           ├── backend.vhost
+    │   │   │   │           ├── backoffice.vhost
+    │   │   │   │           └── public.vhost
     │   │   │   └── ssl
-    │   │   │       ├── server.crt *
-    │   │   │       ├── server.csr *
-    │   │   │       ├── server.key *
-    │   │   │       └── server.key.org *
+    │   │   │       ├── server.crt
+    │   │   │       ├── server.csr
+    │   │   │       ├── server.key
+    │   │   │       └── server.key.org
     │   │   ├── etc
     │   │   │   ├── nginx
-    │   │   │   │   └── nginx.conf  *
+    │   │   │   │   └── nginx.conf 
     │   │   │   └── yum.repos.d
     │   │   │       └── nginx.repo
     │   │   └── installer.sh
     │   ├── python
     │   │   ├── installer.sh
     │   │   └── tmp
-    │   │       └── requirements.txt  *
+    │   │       └── requirements.txt 
     │   ├── rabbitmq
     │   │   └── installer.sh
     │   └── supervisor
     │       ├── data
     │       │   └── etc
     │       │       └── supervisord
-    │       │           ├── backend.conf *
-    │       │           ├── backoffice.conf *
-    │       │           └── tasks.conf *
+    │       │           ├── backend.conf
+    │       │           ├── backoffice.conf
+    │       │           └── tasks.conf
     │       ├── etc
     │       │   ├── rc.d
     │       │   │   └── init.d
@@ -100,8 +100,6 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
     │       │   └── supervisord.conf
     │       └── installer.sh
     └── install.sh
-
-> (*) modify
 
 #### Project Path
 
@@ -118,6 +116,6 @@ Environment build with CentOS, Memcached, MongoDB, RabbitMQ and Python.
 
 * Please, be careful if you implement this solution for your production server. We recommend using other solutions like Puppet or Chef.
 
-* This software was created for build a development and testing environment. We recommend using other solutions like Vagrant.
+* This software was created for build a development and testing environment.
 
 ---
